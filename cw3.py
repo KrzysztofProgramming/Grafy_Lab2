@@ -7,7 +7,7 @@ class Task3:
     def __init__(self):
         self.graph = nx.Graph()
 
-    def visualize_connected_components(self, components=None, title="Spójne składowe", name="connected_components"):
+    def visualize_connected_components(self, components=None, title="Spójne składowe", name="cw_3"):
         plt.figure(figsize=(6, 6))
         x0, y0, r = 0, 0, 5
         alpha = 2 * np.pi / len(self.graph.edges)

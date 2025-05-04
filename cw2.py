@@ -2,6 +2,10 @@ import networkx as nx
 import random
 from matplotlib import pyplot as plt
 from networkx import Graph
+from networkx.algorithms.threshold import degree_sequence
+
+from cw1 import graph_from_sequence
+
 
 def randomize_graph(graph, iterations=500):
     for i in range(iterations):
@@ -35,10 +39,10 @@ def draw(graph: Graph, name: str):
 
 def main():
     degree_sequence = [5, 5, 3, 3, 2, 2, 2, 2, 2, 2]
-    graph = nx.generators.degree_seq.havel_hakimi_graph(degree_sequence)
-    draw(graph, "original")
+    graph = graph_from_sequence(degree_sequence)
+    draw(graph, "cw_2_original")
     rand_graph = randomize_graph(graph, iterations=1000)
-    draw(rand_graph, "random")
+    draw(rand_graph, "cw_2_random")
 
 
 if __name__ == "__main__":
