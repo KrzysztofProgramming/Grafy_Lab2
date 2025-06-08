@@ -37,10 +37,14 @@ def graph_from_sequence(seq):
     graph.add_nodes_from(nodes)
     
     degrees.sort(reverse=True)
-    indexed_degrees = [[i, degrees[i]] for i in range(n)]
+    # zamieniamy do postaci: [[0, 4], [1, 4], [2, 3], ...]
+    indexed_degrees =  [[i, degrees[i]] for i in range(n)]
+    # jeżeli stopień jest większy od 0 to dodajemy krawędzie
     while indexed_degrees[0][1]>0:
-        max_node, max_degree =indexed_degrees.pop(0)
+        max_node, max_degree = indexed_degrees.pop(0)
+        # dodajemy tyle krawędzi ile wynosi stopień
         for i in range(max_degree):
+            # obniżamy stopnie nowym sąsiadom
             indexed_degrees[i][1]-=1
             graph.add_edge(max_node,indexed_degrees[i][0])
         
@@ -62,7 +66,7 @@ def main():
     graph=graph_from_sequence(seq)
     if graph:
         print("Generating graph from sequence: " +str(seq))
-        draw(graph,"cw1")
+        draw(graph,"cw_1")
 
 if __name__ == "__main__":
     main()

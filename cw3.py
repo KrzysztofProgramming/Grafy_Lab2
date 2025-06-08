@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import networkx as nx
 
+from cw1 import graph_from_sequence
+
 
 class Task3:
     def __init__(self):
@@ -53,6 +55,8 @@ class Task3:
         components = []
         component_id = 0
 
+        # dla każdego node'a przechodzimy DFSem i po drodze dodajemy go do odwiedzonych nadając id
+        # po każdym cylku DFSa zwiększamy globalny licznik id
         for v in self.graph.nodes:
             if comp[v] == -1:
                 component_id += 1
@@ -60,6 +64,7 @@ class Task3:
                 dfs(v, component_id, component)
                 components.append(component)
 
+        # opcjonalnie dla wyświetlania
         components.sort(key=len, reverse=True)
         return components
 
@@ -67,7 +72,7 @@ class Task3:
 def test_task3():
     degree_sequence = [4, 2, 2, 3, 2, 1, 4, 2, 2, 2, 2]
     task3 = Task3()
-    task3.graph = nx.generators.degree_seq.havel_hakimi_graph(degree_sequence)
+    task3.graph = graph_from_sequence(degree_sequence)
 
     components = task3.find_connected_components()
     for idx, component in enumerate(components, start=1):

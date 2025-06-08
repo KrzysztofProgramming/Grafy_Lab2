@@ -9,12 +9,12 @@ def generate_random_euler_graph(n):
     if n <= 2:
         print("Graph of less than 3 nodes can't have Euler cycle")
         return None
-    for i in range(50):
+    for _ in range(50):
         degrees = generate_random_even_numbers(n)
         print(degrees)
         graph = graph_from_sequence(degrees)
         if graph is not None:
-            draw(graph, "a")
+            draw(graph, "cw_4")
             if len(find_connected_components(graph)) == 1:
                 print("Euler cycle: " + str(find_euler_cycle(graph)))
                 break

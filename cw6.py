@@ -10,7 +10,6 @@ def find_hamilton_cycle(graph: Graph) -> list[int]:
     nodes = list(graph.nodes())
 
     def dfs(current_node, visited, path) -> list[int]:
-        print(visited)
         path.append(current_node)
         if len(path) == nodes_len and path[0] in graph.neighbors(current_node):
             return path
